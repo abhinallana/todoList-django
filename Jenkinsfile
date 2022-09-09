@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'This is the Checkout Stage'
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/abhinallana/todoList-django.git']]])
+                echo 'docker --version'
             }
         }
         stage('Build'){
