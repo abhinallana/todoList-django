@@ -5,14 +5,15 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'This is the Checkout Stage'
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/abhinallana/todoList-django.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/abhinallana/todoList-django.git']]])
                 echo 'docker --version'
+                sh 'docker --version'
             }
         }
         stage('Build'){
             steps{
-                git branch: 'master', credentialsId: 'GithubCreds', url: 'https://github.com/abhinallana/todoList-django.git'
-                sh 'sudo apt-get install docker'
+                git branch: '*', credentialsId: 'GithubCreds', url: 'https://github.com/abhinallana/todoList-django.git'
+                sh 'apt-get install docker'
                 sh 'docker --version'
                 sh 'docker build . -t todoDev'
             }
