@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Build'){
             steps{
-                git branch: 'develop', credentialsId: 'GithubCreds', url: 'https://github.com/abhinallana/todoList-django.git'
+                git branch: 'master', credentialsId: 'GithubCreds', url: 'https://github.com/abhinallana/todoList-django.git'
                 sh 'sudo apt-get install docker'
                 sh 'docker --version'
                 sh 'docker build . -t todoDev'
