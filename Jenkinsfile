@@ -19,9 +19,16 @@ node{
                 echo 'Build has completed, Pushing to DockerHub'
                 sh 'docker push abhinallana/tododjango:v2'
             }
+        stage('Deploy to Minikube Cluster'){
+            echo 'Deploying to K8s Minikube Cluster'
+            sshagent(['k8s']) {
+                // some block
+            }
+
+        }
         stage('End'){
                 def buildNo = "${BUILD_NUMBER}"
-                echo 'Succesfully Built the Job in ${buildNo}th time. '
+                echo 'Succesfully Built the Job in ${buildNo} th time. '
             }
     }
 
