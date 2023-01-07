@@ -6,12 +6,12 @@ node{
         
         stage('Docker build'){
                 sh 'docker --version'
-                sh 'docker build . -t abhinallana/tododjango:v1'
+                sh 'docker build . -t abhinallana/tododjango:v2'
             }
         
         stage('Docker Login') {
-                withCredentials([string(credentialsId: 'Dockerhub-pwd', variable: 'docker-pwd')]) {
-                 sh 'docker login -u abhinallana -p ${docker-pwd}'
+                withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
+                 sh 'docker login -u abhinallana -p ${dockerpwd}'
                  echo "Successfully Logged into Docker"
                 }
             }
